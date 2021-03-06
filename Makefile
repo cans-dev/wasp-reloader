@@ -47,6 +47,10 @@ ifeq ($(BOARD),pinetime)
 all : $(OBJDIR)/reloader-mcuboot.zip $(OBJDIR)/reloader-factory.zip
 endif
 
+ifeq ($(BOARD),p8)
+all : $(OBJDIR)/reloader-mcuboot.zip $(OBJDIR)/reloader-factory.zip
+endif
+
 $(OBJDIR)/reloader-mcuboot.elf: LDSCRIPT = nrf52832_xxaa_mcuboot.ld
 $(OBJDIR)/reloader-mcuboot.elf: $(OBJDIR) $(OBJS) $(LDFILE)
 	$(CROSS_COMPILE)gcc $(LDFLAGS) $(OBJS) -o $@

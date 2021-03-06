@@ -14,4 +14,7 @@
 #define CONFIG_WDT_BUTTON_ACTIVE (1) // active high
 #define CONFIG_WDT_BUTTON_PULL   (0)  // no pull up/down
 
+#define CONFIG_HAVE_SPINOR       (1)
+#define CONFIG_SPINOR_CS         (5)
+
 #endif /* RELOADER_BOARD_P8_H__ */
