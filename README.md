@@ -16,11 +16,14 @@ Building wasp-reloader
 
 Note: *wasp-reloader is tested using the [GNU-RM toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm) (9-2019-q4) from Arm.*
 
-1. Use `hex2c.py` (from wasp-os `tools/` directory) to populate
-   `src/boards/<boardname>/bootloader.h`
-2. `git submodule init --update`
-3. `make`
-4. Deploy!
+1. Build InfiniTime-P8, mcuboot-bootloader-P8
+2. python3 hex2c.py mynewt.elf.hex > src/boards/p8/bootloader.h
+3. bin2hex.py --offset=0x8000 pinetime-mcuboot-recovery-loader-image-1.3.0.bin pinetime-mcuboot-recovery-loader-image-1.3.0.hex
+4. hexmerge.py --overlap=error -o factory_image.hex pinetime-mcuboot-recovery-loader-image-1.3.0.hex mynewt.elf.hex
+5. python3 hex2c.py factory_image.hex > src/boards/p8/factory_image.h
+6. `git submodule init --update`
+7. `make`
+8. Deploy!
 
 Status
 ------
